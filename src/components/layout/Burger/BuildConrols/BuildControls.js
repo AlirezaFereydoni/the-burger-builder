@@ -5,7 +5,7 @@ import style from "./BuildControls.module.css";
 const controls = [
   { label: "Salad", type: "salad" },
   { label: "Bacon", type: "bacon" },
-  { label: "Cheese", type: "Cheese" },
+  { label: "Cheese", type: "cheese" },
   { label: "Meat", type: "meat" }
 ];
 
@@ -17,6 +17,8 @@ const BuildControls = props => {
           key={Ctrl.label}
           label={Ctrl.label}
           added={() => props.addIngredient(Ctrl.type)}
+          removed={() => props.removeIngredient(Ctrl.type)}
+          disabled={props.disabled[Ctrl.type]}
         />
       ))}
     </div>
