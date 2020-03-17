@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
-import Burger from "./../../components/layout/Burger/Burger";
-import BuildControls from "./../../components/layout/Burger/BuildConrols/BuildControls";
+import Burger from "./../../components/Burger/Burger";
+import BuildControls from "./../../components/Burger/BuildConrols/BuildControls";
 import Modal from "./../../components/UI/Modal/Modal";
-import OrderSummary from "./../../components/layout/Burger/OrderSummary/OrderSummary";
+import OrderSummary from "./../../components/Burger/OrderSummary/OrderSummary";
 
 const IngredientPrices = {
   salad: 0.5,
