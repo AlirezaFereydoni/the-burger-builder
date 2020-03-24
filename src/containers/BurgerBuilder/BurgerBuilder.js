@@ -5,6 +5,7 @@ import Modal from "./../../components/UI/Modal/Modal";
 import OrderSummary from "./../../components/Burger/OrderSummary/OrderSummary";
 import axios from "./../../axios-orders";
 import Spinner from "./../../components/UI/Spinner/Spinner";
+import WithErrorHandler from "./../../hoc/withErrorHandler/withErrorHandler";
 
 const IngredientPrices = {
   salad: 0.5,
@@ -15,17 +16,18 @@ const IngredientPrices = {
 
 class BurgerBuilder extends Component {
   state = {
-    ingredient: {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0
-    },
+    ingredient: {},
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
     loading: false
   };
+
+  componentDidMount() {
+    axios
+      .get("https://my-project-1558250927226.firebaseio.com/ingredient.json")
+      .then(response => this.setState({ ingredient: response.data }));
+  }
 
   updatePurchasableState = ingredient => {
     const sum = Object.keys(ingredient)
@@ -154,4 +156,4 @@ class BurgerBuilder extends Component {
   }
 }
 
-export default BurgerBuilder;
+export default WithErrorHandler(BurgerBuilder, axios);
