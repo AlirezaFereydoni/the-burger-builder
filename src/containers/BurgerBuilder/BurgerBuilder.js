@@ -20,7 +20,8 @@ class BurgerBuilder extends Component {
     totalPrice: 0,
     purchasable: false,
     purchasing: false,
-    loading: false
+    loading: false,
+    error: false
   };
 
   componentDidMount() {
@@ -123,17 +124,42 @@ class BurgerBuilder extends Component {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
 
-    let orderSummary = (
-      <OrderSummary
-        ingredients={this.state.ingredient}
-        cancelOrder={this.closePurchaseHandler}
-        continueOrder={this.continueOrderHandler}
-        price={this.state.totalPrice}
-      />
+    let burger = this.state.error ? (
+      <p>Ingredients can't be loaded</p>
+    ) : (
+      <Spinner />
     );
+    let orderSummary = null;
+
+    if (this.state.ingredient) {
+      burger = (
+        <>
+          <Burger ingredient={this.state.ingredient} />
+          <BuildControls
+            addIngredient={this.addIngredientHandler}
+            removeIngredient={this.removeIngredientHandler}
+            disabled={disabledInfo}
+            price={this.state.totalPrice}
+            purchasable={this.state.purchasable}
+            ordered={this.purchaseHandler}
+          />
+        </>
+      );
+
+      orderSummary = (
+        <OrderSummary
+          ingredients={this.state.ingredient}
+          cancelOrder={this.closePurchaseHandler}
+          continueOrder={this.continueOrderHandler}
+          price={this.state.totalPrice}
+        />
+      );
+    }
+
     if (this.state.loading) {
       orderSummary = <Spinner />;
     }
+
     return (
       <Fragment>
         <Modal
@@ -142,15 +168,7 @@ class BurgerBuilder extends Component {
         >
           {orderSummary}
         </Modal>
-        <Burger ingredient={this.state.ingredient} />
-        <BuildControls
-          addIngredient={this.addIngredientHandler}
-          removeIngredient={this.removeIngredientHandler}
-          disabled={disabledInfo}
-          price={this.state.totalPrice}
-          purchasable={this.state.purchasable}
-          ordered={this.purchaseHandler}
-        />
+        {burger}
       </Fragment>
     );
   }
