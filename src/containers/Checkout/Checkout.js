@@ -10,10 +10,31 @@ class Checkout extends Component {
       meat: 1
     }
   };
+
+  componentDidMount() {
+    const query = new URLSearchParams(this.props.location.search);
+    const ingredient = {};
+    for (let param of query.entries()) {
+      ingredient[param[0]] = +param[1];
+    }
+    this.setState({ ingredient: ingredient });
+  }
+
+  checkoutCancelHandler = () => {
+    this.props.history.goBack();
+  };
+
+  checkoutContinueHandler = () => {
+    this.props.history.replace("/checkout/contact-data");
+  };
   render() {
     return (
       <div>
-        <CheckoutSummary ingredient={this.state.ingredient} />
+        <CheckoutSummary
+          ingredient={this.state.ingredient}
+          cancelCheckout={this.checkoutCancelHandler}
+          continueCheckout={this.checkoutContinueHandler}
+        />
       </div>
     );
   }
