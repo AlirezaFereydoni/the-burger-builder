@@ -18,8 +18,8 @@ class ContactData extends Component {
   orderHandler = () => {
     this.setState({ loading: true });
     const order = {
-      ingredients: this.props.ingredient,
-      price: this.props.price.toFixed(2),
+      ingredient: this.props.ingredient,
+      price: this.props.price,
       customer: {
         name: "Alireza Fereydoni",
         address: {
