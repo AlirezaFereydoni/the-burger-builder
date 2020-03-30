@@ -3,7 +3,7 @@ import styles from "./Modal.module.css";
 import Backdrop from "../Backdrop/Backdrop";
 
 class Modal extends Component {
-  componentShouldUpdate(nextProps, nestState) {
+  shouldComponentUpdate(nextProps, nestState) {
     return (
       nextProps.show !== this.props.show ||
       nextProps.children !== this.props.children

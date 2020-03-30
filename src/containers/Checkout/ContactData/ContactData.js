@@ -7,11 +7,58 @@ import styles from "./ContactData.module.css";
 
 class ContactData extends Component {
   state = {
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      PostalCode: ""
+    orderForm: {
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name"
+        },
+        value: ""
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Mail"
+        },
+        value: ""
+      },
+      street: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name"
+        },
+        value: ""
+      },
+      zipCode: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name"
+        },
+        value: ""
+      },
+      country: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name"
+        },
+        value: ""
+      },
+
+      deliveryMethod: {
+        elementType: "select",
+        elementConfig: {
+          options: [
+            { value: "fastest", displayValue: "Fastest" },
+            { value: "cheapest", displayValue: "Cheapest" }
+          ]
+        },
+        value: ""
+      }
     },
     loading: false
   };
@@ -40,33 +87,42 @@ class ContactData extends Component {
       )
       .catch(error => this.setState({ loading: false }));
   };
+
+  inputChangeHandler = (e, formElementIdentifier) => {
+    const newOrderForm = {
+      ...this.state.orderForm
+    };
+    const updatedOrderForm = {
+      ...newOrderForm[formElementIdentifier]
+    };
+
+    updatedOrderForm.value = e.target.value;
+    newOrderForm[formElementIdentifier] = updatedOrderForm;
+
+    this.setState({ orderForm: newOrderForm });
+  };
   render() {
+    let formElementArray = [];
+    for (let key in this.state.orderForm) {
+      formElementArray.push({
+        id: key,
+        config: this.state.orderForm[key]
+      });
+    }
     let form = (
       <form>
-        <Input
-          type="text"
-          inputType="input"
-          name="name"
-          placeholder="Your Name"
-        />
-        <Input
-          type="email"
-          inputType="input"
-          name="email"
-          placeholder="Your Email"
-        />
-        <Input
-          type="text"
-          inputType="input"
-          name="street"
-          placeholder="Your Street"
-        />
-        <Input
-          type="text"
-          inputType="input"
-          name="postalcode"
-          placeholder="Your PostalCode"
-        />
+        {formElementArray.map(formElement => {
+          return (
+            <Input
+              key={formElement.id}
+              elementType={formElement.config.elementType}
+              elementConfig={formElement.config.elementConfig}
+              value={formElement.config.value}
+              changed={e => this.inputChangeHandler(e, formElement.id)}
+            />
+          );
+        })}
+
         <Button btnType="Success" clicked={this.orderHandler}>
           ORDER
         </Button>
