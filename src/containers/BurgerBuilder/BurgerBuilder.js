@@ -12,7 +12,7 @@ const IngredientPrices = {
   salad: 0.5,
   bacon: 1.5,
   cheese: 0.4,
-  meat: 1.2
+  meat: 1.2,
 };
 
 class BurgerBuilder extends Component {
@@ -22,29 +22,29 @@ class BurgerBuilder extends Component {
     purchasable: false,
     purchasing: false,
     loading: false,
-    error: false
+    error: false,
   };
 
   componentDidMount() {
     axios
       .get("https://my-project-1558250927226.firebaseio.com/ingredient.json")
-      .then(response => this.setState({ ingredient: response.data }));
+      .then((response) => this.setState({ ingredient: response.data }));
   }
 
-  updatePurchasableState = ingredient => {
+  updatePurchasableState = (ingredient) => {
     const sum = Object.keys(ingredient)
-      .map(igKey => {
+      .map((igKey) => {
         return ingredient[igKey];
       })
       .reduce((cur, item) => {
         return cur + item;
       }, 0);
     this.setState({
-      purchasable: sum > 0
+      purchasable: sum > 0,
     });
   };
 
-  addIngredientHandler = type => {
+  addIngredientHandler = (type) => {
     const oldIngredient = this.state.ingredient[type];
     const newIngredient = oldIngredient + 1;
     const updatedIngredient = { ...this.state.ingredient };
@@ -56,12 +56,12 @@ class BurgerBuilder extends Component {
 
     this.setState({
       totalPrice: newPrice,
-      ingredient: updatedIngredient
+      ingredient: updatedIngredient,
     });
     this.updatePurchasableState(updatedIngredient);
   };
 
-  removeIngredientHandler = type => {
+  removeIngredientHandler = (type) => {
     const oldIngredient = this.state.ingredient[type];
     if (oldIngredient <= 0) {
       return;
@@ -76,20 +76,20 @@ class BurgerBuilder extends Component {
 
     this.setState({
       totalPrice: newPrice,
-      ingredient: updatedIngredient
+      ingredient: updatedIngredient,
     });
     this.updatePurchasableState(updatedIngredient);
   };
 
   purchaseHandler = () => {
     this.setState({
-      purchasing: true
+      purchasing: true,
     });
   };
 
   closePurchaseHandler = () => {
     this.setState({
-      purchasing: false
+      purchasing: false,
     });
   };
 
@@ -106,13 +106,13 @@ class BurgerBuilder extends Component {
     const queryString = queryParams.join("&");
     this.props.history.push({
       pathname: "/checkout",
-      search: "?" + queryString
+      search: "?" + queryString,
     });
   };
 
   render() {
     const disabledInfo = {
-      ...this.state.ingredient
+      ...this.state.ingredient,
     };
 
     for (let key in disabledInfo) {
