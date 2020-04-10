@@ -5,11 +5,6 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Checkout extends Component {
-  state = {
-    ingredient: null,
-    totalPrice: null,
-  };
-
   checkoutCancelHandler = () => {
     this.props.history.goBack();
   };
