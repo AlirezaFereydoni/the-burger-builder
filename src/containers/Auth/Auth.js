@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./Auth.module.css";
 import Button from "./../../components/UI/Button/Button";
 import Input from "./../../components/UI/Input/Input";
+import Spinner from "./../../components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
 import * as actions from "./../../store/actions/index";
 
@@ -117,8 +118,15 @@ class Auth extends Component {
         config: this.state.controls[key],
       });
     }
+
+    let errorMessage = null;
+    if (this.props.error) {
+      errorMessage = this.props.error.message;
+    }
+
     let form = (
       <form onSubmit={this.submitHandler}>
+        {errorMessage}
         {formElementArray.map((formElement) => {
           return (
             <Input
@@ -144,9 +152,20 @@ class Auth extends Component {
       </form>
     );
 
+    if (this.props.loading) {
+      form = <Spinner />;
+    }
+
     return <div className={styles.Auth}>{form}</div>;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -155,4 +174,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
