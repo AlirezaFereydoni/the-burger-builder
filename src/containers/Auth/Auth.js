@@ -5,6 +5,7 @@ import Input from "./../../components/UI/Input/Input";
 import Spinner from "./../../components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
 import * as actions from "./../../store/actions/index";
+import { Redirect } from "react-router-dom";
 
 class Auth extends Component {
   state = {
@@ -124,6 +125,11 @@ class Auth extends Component {
       errorMessage = this.props.error.message;
     }
 
+    let authRedirect = null;
+    if (this.props.isAuthenticated) {
+      authRedirect = <Redirect to="/" />;
+    }
+
     let form = (
       <form onSubmit={this.submitHandler}>
         {errorMessage}
@@ -156,7 +162,12 @@ class Auth extends Component {
       form = <Spinner />;
     }
 
-    return <div className={styles.Auth}>{form}</div>;
+    return (
+      <div className={styles.Auth}>
+        {authRedirect}
+        {form}
+      </div>
+    );
   }
 }
 
@@ -164,6 +175,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.auth.loading,
     error: state.auth.error,
+    isAuthenticated: state.auth.token !== null,
   };
 };
 

@@ -30,7 +30,7 @@ export const logout = () => {
 
 export const checkAuthTimeOut = (expressionTime) => {
   return (dispatch) => {
-    setTimeout(dispatch(logout()), expressionTime * 1000);
+    setTimeout(dispatch(logout, expressionTime * 1000));
   };
 };
 
