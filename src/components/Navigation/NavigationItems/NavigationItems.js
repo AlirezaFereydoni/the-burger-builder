@@ -9,7 +9,7 @@ const NavigationItems = (props) => {
         Burger Builder
       </NavigationItem>
       {props.isAuth ? (
-        <NavigationItem link="/orders">CheckOut</NavigationItem>
+        <NavigationItem link="/orders">Orders</NavigationItem>
       ) : null}
       {!props.isAuth ? (
         <NavigationItem link="/auth">Authenticate</NavigationItem>
