@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You can watch production mode of this web application as below link:
 
-(https://alirezafereydoni.github.io/The-Burger-Builder/)
+https://alirezafereydoni.github.io/The-Burger-Builder/
 
 ## Available Scripts
 
