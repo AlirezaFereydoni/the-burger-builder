@@ -1,8 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Production Version
+## Live Version
 
-You can watch production mode of this web application as below link:
+You can see live version:
 
 https://alirezafereydoni.github.io/The-Burger-Builder/
 
