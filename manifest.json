@@ -1,25 +1,54 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Burger Store",
+  "short_name": "Burger Builder",
+  "description": "Order your customized burger with selectable ingredients",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/src/assets/images/favicon.ico",
+      "sizes": "32x32 16x16",
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "/src/assets/images/maskable_icon_x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/src/assets/images/maskable_icon_x72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/src/assets/images/maskable_icon_x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/src/assets/images/maskable_icon_x384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "/src/assets/images/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
+  "start_url": "/",
+  "display": "fullscreen",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "scope": "/",
+  "dir": "ltr",
+  "lang": "en-Us",
+  "orientation": "any",
+  "categories": [
+    "food",
+    "fastFood",
+    "burger",
+    "burgerBuilder",
+    "burger_builder",
+    "fast_food",
+    "ingredient"
+  ]
 }
