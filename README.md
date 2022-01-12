@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Live Version
 
-https://alirezafereydoni.github.io/The-Burger-Builder/
+https://alirezafereydoni.github.io/the-burger-builder/
 
 ## Available Scripts
 
